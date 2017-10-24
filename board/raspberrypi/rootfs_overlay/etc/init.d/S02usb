@@ -1,8 +1,13 @@
 #!/bin/sh
 
+set -e
+
 start() {
-    /bin/echo "Mounting USB drives"
-    /bin/sh /opt/main.sh
+    /bin/echo "Setting up drive"
+    /bin/sh /opt/setup.sh
+
+    /bin/echo "Starting multitool..."
+    /usr/bin/multitool &
 }
 
 case "$1" in
