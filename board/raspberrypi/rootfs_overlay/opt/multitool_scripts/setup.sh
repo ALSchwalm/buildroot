@@ -61,6 +61,8 @@ if [ -b $LVM_PARTITION ]; then
         lvcreate -l 100%FREE -T $VOLUME_GROUP/$THINPOOL
     fi
 
+    vgchange -a y $VOLUME_GROUP
+
     # Get configfs up and running
     mount none /sys/kernel/config -t configfs
     mkdir -p $GADGET_ROOT
