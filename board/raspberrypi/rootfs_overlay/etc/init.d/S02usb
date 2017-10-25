@@ -3,8 +3,11 @@
 set -e
 
 start() {
+    export MULTITOOL_BASE_MOUNT="/mnt/"
+    export MULTITOOL_SCRIPTS_PATH="/opt/multitool_scripts/"
+
     /bin/echo "Setting up drive"
-    /bin/sh /opt/setup.sh
+    /bin/sh $MULTITOOL_SCRIPTS_PATH/setup.sh
 
     /bin/echo "Starting multitool..."
     /usr/bin/multitool &
