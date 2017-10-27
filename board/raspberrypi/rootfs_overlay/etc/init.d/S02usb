@@ -6,6 +6,9 @@ start() {
     export MULTITOOL_BASE_MOUNT="/mnt/"
     export MULTITOOL_SCRIPTS_PATH="/opt/multitool_scripts/"
 
+    #TODO: fix with popen flags?
+    export LVM_SUPPRESS_FD_WARNINGS=1
+
     /bin/echo "Setting up drive"
     /bin/sh $MULTITOOL_SCRIPTS_PATH/setup.sh
 

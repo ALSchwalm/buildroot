@@ -68,8 +68,6 @@ if [ -b $LVM_PARTITION ]; then
     mkdir -p $GADGET_ROOT
 
     init_configfs
-
-    create_device
 else
     ((
         echo n # Add a new partition
