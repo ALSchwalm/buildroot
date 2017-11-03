@@ -13,7 +13,7 @@ start() {
     /bin/sh $MULTITOOL_SCRIPTS_PATH/setup.sh
 
     /bin/echo "Starting multitool..."
-    /usr/bin/multitool &
+    /usr/bin/multitool | /usr/bin/tee /var/multitool.log &
 }
 
 case "$1" in

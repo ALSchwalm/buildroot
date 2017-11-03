@@ -5,9 +5,19 @@ BOARD_NAME="$(basename ${BOARD_DIR})"
 GENIMAGE_CFG="${BOARD_DIR}/genimage-${BOARD_NAME}.cfg"
 GENIMAGE_TMP="${BUILD_DIR}/genimage.tmp"
 
-if ! grep -qE '^dtoverlay=' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
+if ! grep -qE '^dtoverlay=dwc2' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
     echo "Adding 'dtoverlay=dwc2' to config.txt"
     echo "dtoverlay=dwc2" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
+fi
+
+if ! grep -qE '^dtoverlay=pi3-disable-bt' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
+    echo "Adding 'dtoverlay=pi3-disable-bt' to config.txt"
+    echo "dtoverlay=pi3-disable-bt" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
+fi
+
+if ! grep -qE '^enable_uart=1' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
+    echo "Adding 'enable_uart=1' to config.txt"
+    echo "enable_uart=1" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
 fi
 
 rm "${BINARIES_DIR}/rpi-firmware/cmdline.txt"

@@ -41,13 +41,6 @@ init_configfs()
     echo $CONFIGURATION > $GADGET_ROOT/configs/c.1/strings/0x409/configuration
 }
 
-create_device()
-{
-    echo "Starting device"
-
-    ls /sys/class/udc > $GADGET_ROOT/UDC
-}
-
 
 if [ -b $LVM_PARTITION ]; then
     modprobe dwc2
