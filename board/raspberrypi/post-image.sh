@@ -20,6 +20,11 @@ if ! grep -qE '^enable_uart=1' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
     echo "enable_uart=1" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
 fi
 
+if ! grep -qE '^dtparam=spi=on' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
+    echo "Adding 'dtparam=spi=on' to config.txt"
+    echo "dtparam=spi=on" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
+fi
+
 rm "${BINARIES_DIR}/rpi-firmware/cmdline.txt"
 echo "root=/dev/mmcblk0p2 rootwait rootfstype=ext4 console=tty1 console=ttyAMA0,115200" \
      > "${BINARIES_DIR}/rpi-firmware/cmdline.txt"

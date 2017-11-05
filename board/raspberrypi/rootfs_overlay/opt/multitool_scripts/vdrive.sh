@@ -4,6 +4,10 @@ set -e
 
 _VERBOSE=0
 
+SCRIPT_DIR="$(dirname "$0")"
+
+"$SCRIPT_DIR/mount.sh"
+
 verbose_echo()
 {
     if [[ $_VERBOSE -eq 1 ]]; then
@@ -11,10 +15,23 @@ verbose_echo()
     fi
 }
 
+mount_external_vdrive()
+{
+    VOLUME_PATH="/dev/VolGroup00/$1"
+    verbose_echo "Adding entry for volume $VOLUME_PATH"
+    add_entry($1, $VOLUME_PATH, 0)
+}
+
+unmount_external_vdrive()
+{
+    verbose_echo "Removing entry with ID=$1"
+    remove_entry($1)
+}
+
 # Given a volume name and a mount point, mount each partition
 # of the drive and scan the partitions for ISOS. Each located
 # iso is printed.
-mount_vdrive()
+mount_internal_vdrive()
 {
     VOLUME_PATH="/dev/VolGroup00/$1"
     MOUNTPOINT=$2
@@ -49,7 +66,7 @@ mount_vdrive()
     done
 }
 
-unmount_vdrive()
+unmount_internal_vdrive()
 {
     MOUNTPOINT=$1
 
@@ -74,14 +91,19 @@ do
 done
 
 case $1 in
-    mount)
-        mount_vdrive $2 $3
+    mount-internal)
+        mount_internal_vdrive $2 $3
         ;;
-    unmount)
-        unmount_vdrive $2
+    unmount-internal)
+        unmount_internal_vdrive $2
         ;;
+    mount-external)
+        mount_external_vdrive $2
+        ;;
+    unmount-external)
+        unmount_external_vdrive $2
     *)
-        echo "Usage: vdrive (mount|unmount) [args...]"
+        echo "Usage: vdrive (mount-internal|unmount-internal) [args...]"
         exit 1
         ;;
 esac
