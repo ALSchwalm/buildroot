@@ -3,17 +3,17 @@
 set -e
 
 start() {
-    export MULTITOOL_BASE_MOUNT="/mnt/"
-    export MULTITOOL_SCRIPTS_PATH="/opt/multitool_scripts/"
+    export PISO_BASE_MOUNT="/mnt/"
+    export PISO_SCRIPTS_PATH="/opt/piso_scripts/"
 
     #TODO: fix with popen flags?
     export LVM_SUPPRESS_FD_WARNINGS=1
 
     /bin/echo "Setting up drive"
-    /bin/sh $MULTITOOL_SCRIPTS_PATH/setup.sh
+    /bin/sh $PISO_SCRIPTS_PATH/setup.sh
 
-    /bin/echo "Starting multitool..."
-    /usr/bin/multitool | /usr/bin/tee /var/multitool.log &
+    /bin/echo "Starting pISO..."
+    /usr/bin/pISO | /usr/bin/tee /var/piso.log &
 }
 
 case "$1" in

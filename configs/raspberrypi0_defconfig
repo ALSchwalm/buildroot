@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Buildroot 2017.11-git-00825-geaddba7723-dirty Configuration
+# Buildroot 2017.11-git-00826-gc93b8aaad5-dirty Configuration
 #
 BR2_HAVE_DOT_CONFIG=y
 BR2_HOST_GCC_AT_LEAST_4_5=y
@@ -1284,7 +1284,7 @@ BR2_PACKAGE_LIBAIO_ARCH_SUPPORTS=y
 # BR2_PACKAGE_LIBXKBCOMMON is not set
 # BR2_PACKAGE_MRAA is not set
 # BR2_PACKAGE_MTDEV is not set
-BR2_PACKAGE_MULTITOOL=y
+BR2_PACKAGE_PISO=y
 
 #
 # ne10 needs a toolchain w/ neon

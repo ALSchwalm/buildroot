@@ -26,7 +26,7 @@ init_configfs()
 
     local SERIAL_NUMBER="0000000000000000"
     local MANUFACTURER="Adam Schwalm"
-    local PRODUCT="USB MultiTool"
+    local PRODUCT="pISO"
 
     echo $SERIAL_NUMBER > $GADGET_ROOT/strings/0x409/serialnumber
     echo $MANUFACTURER > $GADGET_ROOT/strings/0x409/manufacturer
