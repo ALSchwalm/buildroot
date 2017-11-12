@@ -6,7 +6,7 @@ _VERBOSE=0
 
 SCRIPT_DIR="$(dirname "$0")"
 
-"$SCRIPT_DIR/mount.sh"
+source "$SCRIPT_DIR/mount.sh"
 
 verbose_echo()
 {
@@ -19,13 +19,13 @@ mount_external_vdrive()
 {
     VOLUME_PATH="/dev/VolGroup00/$1"
     verbose_echo "Adding entry for volume $VOLUME_PATH"
-    add_entry($1, $VOLUME_PATH, 0)
+    add_entry $1 $VOLUME_PATH 0
 }
 
 unmount_external_vdrive()
 {
     verbose_echo "Removing entry with ID=$1"
-    remove_entry($1)
+    remove_entry $1
 }
 
 # Given a volume name and a mount point, mount each partition
@@ -102,6 +102,7 @@ case $1 in
         ;;
     unmount-external)
         unmount_external_vdrive $2
+        ;;
     *)
         echo "Usage: vdrive (mount-internal|unmount-internal) [args...]"
         exit 1
