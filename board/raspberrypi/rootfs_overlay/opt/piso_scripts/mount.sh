@@ -38,8 +38,9 @@ remove_entry()
 
 deactivate_udc()
 {
-    # Suppress error if already inactive
-    echo "" 2> $GADGET_ROOT/UDC
+    if [ $(cat $GADGET_ROOT/UDC) ]; then
+        echo "" > $GADGET_ROOT/UDC
+    fi
 }
 
 activate_udc()

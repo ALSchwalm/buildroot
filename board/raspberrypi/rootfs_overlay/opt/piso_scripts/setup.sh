@@ -44,6 +44,8 @@ init_configfs()
 
 if [ -b $LVM_PARTITION ]; then
     modprobe dwc2
+    modprobe spi-bcm2835
+    modprobe spidev
     modprobe libcomposite
 
     if ! (lvs | grep $THINPOOL) ; then
