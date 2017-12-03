@@ -10,7 +10,7 @@ DOSFSTOOLS_SITE = https://github.com/dosfstools/dosfstools/releases/download/v$(
 DOSFSTOOLS_LICENSE = GPL-3.0+
 DOSFSTOOLS_LICENSE_FILES = COPYING
 DOSFSTOOLS_CONF_OPTS = --enable-compat-symlinks --exec-prefix=/
-HOST_DOSFSTOOLS_CONF_OPTS = --enable-compat-symlinks
+HOST_DOSFSTOOLS_CONF_OPTS = --enable-compat-symlinks LIBS="-liconv"
 
 ifeq ($(BR2_PACKAGE_HAS_UDEV),y)
 DOSFSTOOLS_CONF_OPTS += --with-udev

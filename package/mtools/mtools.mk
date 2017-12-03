@@ -22,6 +22,8 @@ HOST_MTOOLS_CONF_ENV = \
 	ac_cv_lib_bsd_main=no \
 	ac_cv_path_INSTALL_INFO=
 
+HOST_MTOOLS_CONF_OPTS = LIBS="-liconv"
+
 # link with iconv if enabled
 ifeq ($(BR2_PACKAGE_LIBICONV),y)
 MTOOLS_DEPENDENCIES += libiconv

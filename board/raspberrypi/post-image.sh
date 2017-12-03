@@ -25,6 +25,16 @@ if ! grep -qE '^dtparam=spi=on' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
     echo "dtparam=spi=on" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
 fi
 
+if ! grep -qE '^boot_delay=0' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
+    echo "Adding 'boot_delay=0' to config.txt"
+    echo "boot_delay=0" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
+fi
+
+if ! grep -qE '^initial_turbo=10' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
+    echo "Adding 'initial_turbo=10' to config.txt"
+    echo "initial_turbo=10" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
+fi
+
 rm "${BINARIES_DIR}/rpi-firmware/cmdline.txt"
 echo "root=/dev/mmcblk0p2 rootwait rootfstype=ext4 console=tty1 console=ttyAMA0,115200" \
      > "${BINARIES_DIR}/rpi-firmware/cmdline.txt"
