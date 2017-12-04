@@ -60,9 +60,9 @@ if [ -b $LVM_PARTITION ]; then
 
     # Get configfs up and running
     mount none /sys/kernel/config -t configfs
-    mkdir -p $GADGET_ROOT
+    # mkdir -p $GADGET_ROOT
 
-    init_configfs
+    # init_configfs
 else
     ((
         echo n # Add a new partition

@@ -15,6 +15,11 @@ if ! grep -qE '^dtoverlay=pi3-disable-bt' "${BINARIES_DIR}/rpi-firmware/config.t
     echo "dtoverlay=pi3-disable-bt" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
 fi
 
+if ! grep -qE '^dtoverlay=sdhost' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
+    echo "Adding 'dtoverlay=sdhost' to config.txt"
+    echo "dtoverlay=sdhost" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
+fi
+
 if ! grep -qE '^enable_uart=1' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
     echo "Adding 'enable_uart=1' to config.txt"
     echo "enable_uart=1" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
@@ -36,7 +41,7 @@ if ! grep -qE '^initial_turbo=10' "${BINARIES_DIR}/rpi-firmware/config.txt"; the
 fi
 
 rm "${BINARIES_DIR}/rpi-firmware/cmdline.txt"
-echo "root=/dev/mmcblk0p2 rootwait rootfstype=ext4 console=tty1 console=ttyAMA0,115200" \
+echo "root=/dev/mmcblk0p2 rootwait rootfstype=ext4 raid=noautodetect console=tty1 console=ttyAMA0,115200" \
      > "${BINARIES_DIR}/rpi-firmware/cmdline.txt"
 
 case "${2}" in
