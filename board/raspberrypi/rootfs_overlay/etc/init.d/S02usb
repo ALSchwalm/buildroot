@@ -13,7 +13,7 @@ start() {
     /bin/sh $PISO_SCRIPTS_PATH/setup.sh
 
     /bin/echo "Starting pISO..."
-    /usr/bin/pISO | /usr/bin/tee /var/piso.log &
+    /usr/bin/pISO 2>&1 | /usr/bin/tee /var/piso.log &
 }
 
 case "$1" in
