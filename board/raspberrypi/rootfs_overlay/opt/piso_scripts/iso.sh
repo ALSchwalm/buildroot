@@ -17,16 +17,14 @@ verbose_echo()
 
 mount_iso()
 {
-    ID=$(basename $1)
     verbose_echo "Mounting iso $1"
-    add_entry $ID $1 1
+    add_entry $2 $1 1
 }
 
 unmount_iso()
 {
-    ID=$(basename $1)
     verbose_echo "Unmounting iso $1"
-    remove_entry $ID
+    remove_entry $2
 }
 
 while getopts ":v" OPTION
@@ -41,10 +39,10 @@ done
 
 case $1 in
     mount)
-        mount_iso $2
+        mount_iso $2 $3
         ;;
     unmount)
-        unmount_iso $2
+        unmount_iso $2 $3
         ;;
     *)
         echo "Usage: iso (mount|unmount) [args...]"
