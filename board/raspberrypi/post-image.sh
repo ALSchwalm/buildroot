@@ -15,9 +15,9 @@ if ! grep -qE '^dtoverlay=pi3-disable-bt' "${BINARIES_DIR}/rpi-firmware/config.t
     echo "dtoverlay=pi3-disable-bt" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
 fi
 
-if ! grep -qE '^dtoverlay=sdhost' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
-    echo "Adding 'dtoverlay=sdhost' to config.txt"
-    echo "dtoverlay=sdhost" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
+if ! grep -qE '^dtoverlay=sdhost,overclock_50=63' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
+    echo "Adding 'dtoverlay=sdhost,overclock_50=63' to config.txt"
+    echo "dtoverlay=sdhost,overclock_50=63" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
 fi
 
 if ! grep -qE '^enable_uart=1' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
