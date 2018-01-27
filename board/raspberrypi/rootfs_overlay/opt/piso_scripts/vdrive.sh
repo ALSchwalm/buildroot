@@ -28,13 +28,9 @@ unmount_external_vdrive()
     remove_entry $1
 }
 
-# Given a volume name and a mount point, mount each partition
-# of the drive and scan the partitions for ISOS. Each located
-# iso is printed.
-mount_internal_vdrive()
+mount_internal_vdrive_basic()
 {
     VOLUME_PATH="/dev/VolGroup00/$1"
-    MOUNTPOINT=$2
 
     LOOPBACK_PATH=$(losetup -f)
 
@@ -49,7 +45,16 @@ mount_internal_vdrive()
     verbose_echo "Locating loopback devices for partitions"
 
     LOOPBACK_SUFFIX="p"
-    PARTITIONS=$(find /dev -wholename "$LOOPBACK_PATH$LOOPBACK_SUFFIX*")
+    find /dev -wholename "$LOOPBACK_PATH$LOOPBACK_SUFFIX*"
+}
+
+# Given a volume name and a mount point, mount each partition
+# of the drive and scan the partitions for ISOS. Each located
+# iso is printed.
+mount_internal_vdrive()
+{
+    PARTITIONS=$(mount_internal_vdrive_basic $1)
+    MOUNTPOINT=$2
 
     verbose_echo "Located partitions: $PARTITIONS"
 
@@ -65,6 +70,11 @@ mount_internal_vdrive()
         fi
     done
 }
+
+# unmount_internal_vdrive_basic()
+# {
+#     #TODO: undo losetup(?)
+# }
 
 unmount_internal_vdrive()
 {
@@ -91,6 +101,12 @@ do
 done
 
 case $1 in
+    mount-internal-basic)
+        mount_internal_vdrive_basic $2
+        ;;
+    unmount-internal-basic)
+        # unmount_internal_vdrive_basic $2
+        ;;
     mount-internal)
         mount_internal_vdrive $2 $3
         ;;
