@@ -63,7 +63,20 @@ mount_internal_vdrive()
 
         verbose_echo "Mounting $PARTITION to $PART_MOUNT"
         mkdir -p $PART_MOUNT
-        mount $PARTITION $PART_MOUNT > /dev/null 2>&1
+        mount $PARTITION $PART_MOUNT > /dev/null 2>&1 || STATUS=$? && true
+
+        if [ $STATUS -ne 0 ]
+        then
+            # We couldn't detect the type automatically, so try a few types
+            fstypes="exfat"
+            for fstype in "${fstypes}"; do
+                mount.$fstype $PARTITION $PART_MOUNT > /dev/null 2>&1 || STATUS=$? && true
+                if [ $STATUS -eq 0 ]; then
+                    break
+                fi
+            done
+        fi
+
 
         if [ -d "$PART_MOUNT/ISOS" ]; then
             find "$PART_MOUNT/ISOS/" -type f

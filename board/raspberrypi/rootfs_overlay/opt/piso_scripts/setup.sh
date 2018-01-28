@@ -47,6 +47,7 @@ if [ -b $LVM_PARTITION ]; then
     modprobe spi-bcm2835
     modprobe spidev
     modprobe libcomposite
+    modprobe fuse
 
     if ! (lvs | grep $THINPOOL) ; then
         pvcreate $LVM_PARTITION || true
