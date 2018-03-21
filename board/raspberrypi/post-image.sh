@@ -41,7 +41,7 @@ if ! grep -qE '^initial_turbo=10' "${BINARIES_DIR}/rpi-firmware/config.txt"; the
 fi
 
 rm "${BINARIES_DIR}/rpi-firmware/cmdline.txt"
-echo "root=/dev/mmcblk0p2 rootwait rootfstype=ext4 raid=noautodetect console=tty1 console=ttyAMA0,115200" \
+echo "root=/dev/mmcblk0p2 ro rootwait rootfstype=ext4 raid=noautodetect console=tty1 console=ttyAMA0,115200" \
      > "${BINARIES_DIR}/rpi-firmware/cmdline.txt"
 
 case "${2}" in
