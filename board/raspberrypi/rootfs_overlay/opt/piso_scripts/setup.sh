@@ -24,6 +24,8 @@ if [ -b $LVM_PARTITION ]; then
         lvcreate -l 100%FREE -T $VOLUME_GROUP/$THINPOOL
     fi
 
+    sysctl -p /etc/sysctl.conf
+
     vgchange -a y $VOLUME_GROUP
 
     # Get configfs up and running
