@@ -12,7 +12,7 @@ SAMBA4_LICENSE = GPL-3.0+
 SAMBA4_LICENSE_FILES = COPYING
 SAMBA4_DEPENDENCIES = \
 	host-e2fsprogs host-heimdal host-python \
-	e2fsprogs popt python zlib \
+	e2fsprogs popt zlib \
 	$(if $(BR2_PACKAGE_LIBAIO),libaio) \
 	$(if $(BR2_PACKAGE_LIBCAP),libcap) \
 	$(if $(BR2_PACKAGE_READLINE),readline) \
@@ -110,6 +110,10 @@ define SAMBA4_CONFIGURE_CMDS
 			--without-dmapi \
 			--disable-glusterfs \
 			--with-cluster-support \
+			--disable-python \
+			--without-winbind \
+			--without-dnsupdate \
+			--disable-cups \
 			--bundled-libraries='!asn1_compile,!compile_et' \
 			$(SAMBA4_CONF_OPTS) \
 	)

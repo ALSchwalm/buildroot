@@ -5,6 +5,7 @@
 /.config.old
 /..config.tmp
 /.config
+.buildroot-ccache/
 *.depend
 *.o
 /*.patch
