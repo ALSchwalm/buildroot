@@ -5,6 +5,8 @@ BOARD_NAME="$(basename ${BOARD_DIR})"
 GENIMAGE_CFG="${BOARD_DIR}/genimage-${BOARD_NAME}.cfg"
 GENIMAGE_TMP="${BUILD_DIR}/genimage.tmp"
 
+cp "${BOARD_DIR}/piso.config" "${BINARIES_DIR}/piso.config"
+
 if ! grep -qE '^dtoverlay=dwc2' "${BINARIES_DIR}/rpi-firmware/config.txt"; then
     echo "Adding 'dtoverlay=dwc2' to config.txt"
     echo "dtoverlay=dwc2" >> "${BINARIES_DIR}/rpi-firmware/config.txt"
