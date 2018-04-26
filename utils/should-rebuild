@@ -1,0 +1,15 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+CACHE_FILE=$BASEDIR/../output/.cache-version
+
+if [ ! -f $CACHE_FILE ]; then
+    echo "rebuild"
+    exit 0
+elif [[ $(< $CACHE_FILE) != $(git rev-parse HEAD) ]]; then
+    echo "rebuild"
+    exit 0
+fi
+
+echo "keep"
+exit 0
