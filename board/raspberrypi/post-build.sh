@@ -27,3 +27,6 @@ find "${TARGET_DIR}/lib/firmware/brcm" -type f \
      -not -name 'brcmfmac43430-sdio.txt' \
      -not -name 'brcmfmac43430-sdio.bin' \
      -delete
+
+# We will start these manually when the user starts wifi
+rm "${TARGET_DIR}/etc/init.d/S91smb" || true
