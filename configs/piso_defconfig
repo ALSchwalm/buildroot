@@ -1,16 +1,8 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Buildroot 2018.05-git-00310-gec92204252 Configuration
+# Buildroot 2018.05-git-00311-gb5a71d3d84-dirty Configuration
 #
 BR2_HAVE_DOT_CONFIG=y
-BR2_HOST_GCC_AT_LEAST_4_5=y
-BR2_HOST_GCC_AT_LEAST_4_6=y
-BR2_HOST_GCC_AT_LEAST_4_7=y
-BR2_HOST_GCC_AT_LEAST_4_8=y
-BR2_HOST_GCC_AT_LEAST_4_9=y
-BR2_HOST_GCC_AT_LEAST_5=y
-BR2_HOST_GCC_AT_LEAST_6=y
-BR2_HOST_GCC_AT_LEAST_7=y
 
 #
 # Target options
@@ -174,7 +166,6 @@ BR2_STRIP_EXCLUDE_DIRS=""
 BR2_OPTIMIZE_3=y
 # BR2_OPTIMIZE_G is not set
 # BR2_OPTIMIZE_S is not set
-# BR2_GOOGLE_BREAKPAD_ENABLE is not set
 # BR2_STATIC_LIBS is not set
 BR2_SHARED_LIBS=y
 # BR2_SHARED_STATIC_LIBS is not set
@@ -423,10 +414,10 @@ BR2_GENERATE_LOCALE=""
 # BR2_SYSTEM_ENABLE_NLS is not set
 # BR2_TARGET_TZ_INFO is not set
 BR2_ROOTFS_USERS_TABLES=""
-BR2_ROOTFS_OVERLAY="board/raspberrypi/rootfs_overlay"
-BR2_ROOTFS_POST_BUILD_SCRIPT="board/raspberrypi0/post-build.sh"
+BR2_ROOTFS_OVERLAY="board/piso/rootfs_overlay"
+BR2_ROOTFS_POST_BUILD_SCRIPT="board/piso/post-build.sh"
 BR2_ROOTFS_POST_FAKEROOT_SCRIPT=""
-BR2_ROOTFS_POST_IMAGE_SCRIPT="board/raspberrypi0/post-image.sh"
+BR2_ROOTFS_POST_IMAGE_SCRIPT="board/piso/post-image.sh"
 BR2_ROOTFS_POST_SCRIPT_ARGS=""
 
 #
@@ -447,7 +438,7 @@ BR2_LINUX_KERNEL_PATCH=""
 # BR2_LINUX_KERNEL_USE_DEFCONFIG is not set
 # BR2_LINUX_KERNEL_USE_ARCH_DEFAULT_CONFIG is not set
 BR2_LINUX_KERNEL_USE_CUSTOM_CONFIG=y
-BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="board/raspberrypi/kernel-config"
+BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="board/piso/kernel-config"
 BR2_LINUX_KERNEL_CONFIG_FRAGMENT_FILES=""
 # BR2_LINUX_KERNEL_UIMAGE is not set
 # BR2_LINUX_KERNEL_APPENDED_UIMAGE is not set
@@ -605,7 +596,10 @@ BR2_PACKAGE_PULSEAUDIO_HAS_ATOMIC=y
 BR2_PACKAGE_GDB_ARCH_SUPPORTS=y
 # BR2_PACKAGE_GDB is not set
 BR2_PACKAGE_GOOGLE_BREAKPAD_ARCH_SUPPORTS=y
-# BR2_PACKAGE_GOOGLE_BREAKPAD is not set
+
+#
+# google-breakpad requires a glibc or uClibc toolchain w/ wchar, thread, C++, gcc >= 4.8
+#
 # BR2_PACKAGE_IOZONE is not set
 # BR2_PACKAGE_KEXEC is not set
 # BR2_PACKAGE_KTAP is not set
@@ -794,7 +788,10 @@ BR2_PACKAGE_NTFS_3G_NTFSPROGS=y
 #
 # BR2_PACKAGE_CEGUI06 is not set
 # BR2_PACKAGE_DIRECTFB is not set
-# BR2_PACKAGE_EFL is not set
+
+#
+# efl needs a toolchain w/ C++, dynamic library, gcc >= 4.7, threads, wchar
+#
 # BR2_PACKAGE_FBDUMP is not set
 # BR2_PACKAGE_FBGRAB is not set
 # BR2_PACKAGE_FB_TEST_APP is not set
@@ -827,6 +824,10 @@ BR2_PACKAGE_QT5_JSCORE_AVAILABLE=y
 
 #
 # midori needs libgtk3 and a glibc toolchain w/ C++, gcc >= 5, host gcc >= 4.8
+#
+
+#
+# qt-webkit-kiosk needs a toolchain w/ dynamic library, gcc >= 4.8, host gcc >= 4.8
 #
 # BR2_PACKAGE_XKEYBOARD_CONFIG is not set
 
@@ -1141,7 +1142,10 @@ BR2_PACKAGE_HOST_MONO_ARCH_SUPPORTS=y
 BR2_PACKAGE_MONO_ARCH_SUPPORTS=y
 # BR2_PACKAGE_MONO is not set
 BR2_PACKAGE_NODEJS_ARCH_SUPPORTS=y
-# BR2_PACKAGE_NODEJS is not set
+
+#
+# nodejs needs a toolchain w/ C++, dynamic library, NPTL, gcc >= 4.8, wchar
+#
 # BR2_PACKAGE_PERL is not set
 # BR2_PACKAGE_PHP is not set
 # BR2_PACKAGE_PYTHON is not set
@@ -1785,11 +1789,20 @@ BR2_PACKAGE_OPENBLAS_ARCH_SUPPORTS=y
 # BR2_PACKAGE_P11_KIT is not set
 # BR2_PACKAGE_POCO is not set
 BR2_PACKAGE_PROTOBUF_ARCH_SUPPORTS=y
-# BR2_PACKAGE_PROTOBUF is not set
-# BR2_PACKAGE_PROTOBUF_C is not set
+
+#
+# protobuf needs a toolchain w/ C++, threads, dynamic library, host and target gcc >= 4.5
+#
+
+#
+# protobuf-c needs a toolchain w/ C++, threads, host gcc >= 4.5
+#
 # BR2_PACKAGE_QHULL is not set
 # BR2_PACKAGE_QLIBC is not set
-# BR2_PACKAGE_RIEMANN_C_CLIENT is not set
+
+#
+# riemann-c-client needs a toolchain w/ C++, threads, host gcc >= 4.5
+#
 # BR2_PACKAGE_SHAPELIB is not set
 # BR2_PACKAGE_SKALIBS is not set
 # BR2_PACKAGE_SPHINXBASE is not set
@@ -1809,7 +1822,10 @@ BR2_PACKAGE_PROTOBUF_ARCH_SUPPORTS=y
 # BR2_PACKAGE_AUGEAS is not set
 # BR2_PACKAGE_ENCHANT is not set
 # BR2_PACKAGE_FMT is not set
-# BR2_PACKAGE_ICU is not set
+
+#
+# icu needs a toolchain w/ C++, wchar, threads, gcc >= 4.8, host gcc >= 4.8
+#
 # BR2_PACKAGE_LIBCLI is not set
 # BR2_PACKAGE_LIBEDIT is not set
 # BR2_PACKAGE_LIBENCA is not set
@@ -1999,7 +2015,10 @@ BR2_PACKAGE_IW=y
 BR2_PACKAGE_MONGREL2_LIBC_SUPPORTS=y
 # BR2_PACKAGE_MONGREL2 is not set
 # BR2_PACKAGE_MONKEY is not set
-# BR2_PACKAGE_MOSH is not set
+
+#
+# mosh needs a toolchain w/ C++, threads, dynamic library, wchar, host and target gcc >= 4.5
+#
 # BR2_PACKAGE_MOSQUITTO is not set
 # BR2_PACKAGE_MROUTED is not set
 # BR2_PACKAGE_MTR is not set
@@ -2450,7 +2469,10 @@ BR2_PACKAGE_HOST_GOOGLE_BREAKPAD_ARCH_SUPPORTS=y
 # BR2_PACKAGE_HOST_JSMIN is not set
 # BR2_PACKAGE_HOST_LPC3250LOADER is not set
 # BR2_PACKAGE_HOST_LTTNG_BABELTRACE is not set
-# BR2_PACKAGE_HOST_MFGTOOLS is not set
+
+#
+# mfgtools needs host gcc >= 4.8
+#
 # BR2_PACKAGE_HOST_MKPASSWD is not set
 # BR2_PACKAGE_HOST_MTD is not set
 BR2_PACKAGE_HOST_MTOOLS=y
@@ -2473,7 +2495,10 @@ BR2_PACKAGE_HOST_RUSTC_ARCH_SUPPORTS=y
 BR2_PACKAGE_HOST_RUSTC_ARCH="arm"
 BR2_PACKAGE_HOST_RUSTC_ABI="eabihf"
 BR2_PACKAGE_HOST_RUSTC=y
-# BR2_PACKAGE_HOST_RUST is not set
+
+#
+# host-rust needs host gcc >= 4.7
+#
 BR2_PACKAGE_HOST_RUST_BIN=y
 BR2_PACKAGE_HAS_HOST_RUSTC=y
 BR2_PACKAGE_PROVIDES_HOST_RUSTC="host-rust-bin"
