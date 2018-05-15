@@ -1,0 +1,14 @@
+#!/bin/busybox sh
+
+/bin/mount -t devtmpfs devtmpfs /dev
+
+# TODO: check for the block device instead of arbitrary sleep
+sleep 2
+
+mount -t vfat /dev/mmcblk0p1 /boot
+mount -t squashfs -o loop /boot/rootfs.squashfs /mnt
+
+echo "switching root to squashfs"
+
+umount /dev
+exec switch_root /mnt /linuxrc
