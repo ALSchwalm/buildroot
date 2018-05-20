@@ -2,4 +2,4 @@ devtmpfs          /dev/              devtmpfs defaults        0 0
 tmpfs             /tmp               tmpfs    defaults        0 0
 sysfs             /sys               sysfs    defaults        0 0
 configfs          /sys/kernel/config configfs defaults        0 0
-/dev/mmcblk0p1    /boot              vfat     defaults        0 2
+/dev/mmcblk0p1    /boot              vfat     defaults        0 0

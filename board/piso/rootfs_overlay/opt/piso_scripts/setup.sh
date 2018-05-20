@@ -29,7 +29,6 @@ if [ -b $LVM_PARTITION ]; then
     vgchange -a y $VOLUME_GROUP
 
     # Get configfs up and running
-    mount none /sys/kernel/config -t configfs
     mkdir -p $GADGET_ROOT
 else
     ((

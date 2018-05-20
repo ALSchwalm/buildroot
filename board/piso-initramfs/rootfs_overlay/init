@@ -6,9 +6,14 @@
 sleep 2
 
 mount -t vfat /dev/mmcblk0p1 /boot
-mount -t squashfs -o loop /boot/rootfs.squashfs /mnt
+mount -t squashfs -o loop,ro /boot/rootfs.squashfs /mnt
 
-echo "switching root to squashfs"
+mkdir /tmp/work
+mkdir /tmp/upper
+mkdir /tmp/merged
+mount -t overlay overlay -o lowerdir=/mnt,upperdir=/tmp/upper,workdir=/tmp/work /tmp/merged
 
-umount /dev
-exec switch_root /mnt /linuxrc
+echo "switching real root"
+
+# Dont' use 'switch_root' because it will try to clean up /tmp and break the overlay
+exec chroot /tmp/merged /linuxrc
