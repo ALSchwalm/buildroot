@@ -2,18 +2,23 @@
 
 /bin/mount -t devtmpfs devtmpfs /dev
 
-# TODO: check for the block device instead of arbitrary sleep
-sleep 2
-
-mount -t vfat /dev/mmcblk0p1 /boot
-mount -t squashfs -o loop,ro /boot/rootfs.squashfs /mnt
+# Use a tmpfs to prevent 'switch_root' from trying to clean up the overlayfs dirs
+mount -t tmpfs tmpfs /tmp
 
 mkdir /tmp/work
 mkdir /tmp/upper
 mkdir /tmp/merged
+
+while [ ! -b /dev/mmcblk0p1 ]; do
+   sleep 0.01
+done
+
+mount -t vfat /dev/mmcblk0p1 /boot
+mount -t squashfs -o loop,ro /boot/rootfs.squashfs /mnt
+
 mount -t overlay overlay -o lowerdir=/mnt,upperdir=/tmp/upper,workdir=/tmp/work /tmp/merged
 
 echo "switching real root"
 
 # Dont' use 'switch_root' because it will try to clean up /tmp and break the overlay
-exec chroot /tmp/merged /linuxrc
+exec switch_root /tmp/merged /linuxrc
