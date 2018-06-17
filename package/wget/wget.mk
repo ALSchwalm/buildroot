@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-WGET_VERSION = 1.19.4
+WGET_VERSION = 1.19.5
 WGET_SOURCE = wget-$(WGET_VERSION).tar.lz
 WGET_SITE = $(BR2_GNU_MIRROR)/wget
 WGET_DEPENDENCIES = host-pkgconf
@@ -24,6 +24,13 @@ WGET_CONF_OPTS += --with-ssl=openssl
 WGET_DEPENDENCIES += openssl
 else
 WGET_CONF_OPTS += --without-ssl
+endif
+
+ifeq ($(BR2_PACKAGE_LIBIDN2),y)
+WGET_CONF_OPTS += --with-libidn
+WGET_DEPENDENCIES += libidn2
+else
+WGET_CONF_OPTS += --without-libidn
 endif
 
 ifeq ($(BR2_PACKAGE_UTIL_LINUX_LIBUUID),y)

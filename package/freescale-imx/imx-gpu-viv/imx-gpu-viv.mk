@@ -25,8 +25,12 @@ ifeq ($(IMX_GPU_VIV_LIB_TARGET),x11)
 IMX_GPU_VIV_DEPENDENCIES += xlib_libXdamage xlib_libXext xlib_libXfixes
 endif
 
+ifeq ($(IMX_GPU_VIV_LIB_TARGET),wl)
+IMX_GPU_VIV_DEPENDENCIES += libdrm wayland
+endif
+
 define IMX_GPU_VIV_EXTRACT_CMDS
-	$(call FREESCALE_IMX_EXTRACT_HELPER,$(DL_DIR)/$(IMX_GPU_VIV_SOURCE))
+	$(call FREESCALE_IMX_EXTRACT_HELPER,$(IMX_GPU_VIV_DL_DIR)/$(IMX_GPU_VIV_SOURCE))
 endef
 
 # Instead of building, we fix up the inconsistencies that exist
@@ -59,6 +63,12 @@ endif
 ifeq ($(IMX_GPU_VIV_LIB_TARGET),fb)
 define IMX_GPU_VIV_FIXUP_PKGCONFIG
 	ln -sf egl_linuxfb.pc $(@D)/gpu-core/usr/lib/pkgconfig/egl.pc
+endef
+endif
+
+ifeq ($(IMX_GPU_VIV_LIB_TARGET),wl)
+define IMX_GPU_VIV_FIXUP_PKGCONFIG
+	ln -sf egl_wayland.pc $(@D)/gpu-core/usr/lib/pkgconfig/egl.pc
 endef
 endif
 
