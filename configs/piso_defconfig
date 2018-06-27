@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Buildroot 2018.08-git-00406-g61b99a5493-dirty Configuration
+# Buildroot 2018.08-git-00409-g5a3f30f2eb-dirty Configuration
 #
 BR2_HAVE_DOT_CONFIG=y
 BR2_HOST_GCC_AT_LEAST_4_5=y
@@ -681,6 +681,7 @@ BR2_PACKAGE_CMAKE_ARCH_SUPPORTS=y
 # BR2_PACKAGE_ABOOTIMG is not set
 # BR2_PACKAGE_AUFS_UTIL is not set
 # BR2_PACKAGE_AUTOFS is not set
+BR2_PACKAGE_BINDFS=y
 # BR2_PACKAGE_BTRFS_PROGS is not set
 # BR2_PACKAGE_CIFS_UTILS is not set
 # BR2_PACKAGE_CPIO is not set
