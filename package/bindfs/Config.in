@@ -1,0 +1,10 @@
+config BR2_PACKAGE_BINDFS
+	bool "bindfs"
+  depends on BR2_TOOLCHAIN_HAS_THREADS # libfuse
+	depends on BR2_USE_MMU
+  select BR2_PACKAGE_LIBFUSE
+	help
+    bindfs is a FUSE filesystem for mounting a directory to another location, similarly
+    to mount --bind. The permissions inside the mountpoint can be altered using various rules.
+
+	  https://bindfs.org/
