@@ -33,3 +33,4 @@ rm "${TARGET_DIR}/etc/init.d/S91smb" || true
 
 # Ensure the scripts are executable
 chmod +x "${TARGET_DIR}/opt/piso_scripts"/*
+chmod +x "${TARGET_DIR}/etc/init.d/S02usb"
