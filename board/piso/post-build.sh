@@ -30,3 +30,6 @@ find "${TARGET_DIR}/lib/firmware/brcm" -type f \
 
 # We will start these manually when the user starts wifi
 rm "${TARGET_DIR}/etc/init.d/S91smb" || true
+
+# Ensure the scripts are executable
+chmod +x "${TARGET_DIR}/opt/piso_scripts"/*
